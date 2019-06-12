@@ -22,7 +22,13 @@ android {
         }
     }
 
+    flavorDimensions "serviceUrl"
+    productFlavors {
+        prod {}
+    }
 }
+
+
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
