@@ -5,4 +5,5 @@
 <resources>
     <string name="app_name_release">&app_name;</string>
     <string name="app_name_prod">&app_name; -prod-</string>
+    <string name="title_login">Login</string>
 </resources>

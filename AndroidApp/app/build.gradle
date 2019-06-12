@@ -15,10 +15,10 @@ android {
 
     signingConfigs {
         release {
-             storeFile file("keystore.jks")
-             storePassword "123456"
-             keyAlias "keyAlias"
-             keyPassword "123456"
+            storeFile file("keystore.jks")
+            storePassword "123456"
+            keyAlias "keyAlias"
+            keyPassword "123456"
         }
     }
 
@@ -40,11 +40,12 @@ android {
         }
     }
 
+    dynamicFeatures = [":login"]
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.0.2'
     implementation 'androidx.core:core-ktx:1.0.2'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
