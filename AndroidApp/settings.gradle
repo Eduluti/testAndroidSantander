@@ -1,2 +1,2 @@
-include ':app', ':widgets', ':login'
+include ':app', ':widgets', ':login', ':statements'
 rootProject.name='Stantander Test'

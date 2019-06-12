@@ -40,7 +40,9 @@ android {
         }
     }
 
-    dynamicFeatures = [":login"]
+    dynamicFeatures = [":login", ":statements"]
+
+
 }
 
 dependencies {
