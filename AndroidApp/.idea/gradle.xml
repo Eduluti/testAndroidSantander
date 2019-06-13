@@ -11,6 +11,7 @@
             <option value="$PROJECT_DIR$/base" />
             <option value="$PROJECT_DIR$/login" />
             <option value="$PROJECT_DIR$/statements" />
+            <option value="$PROJECT_DIR$/webservice" />
             <option value="$PROJECT_DIR$/widgets" />
           </set>
         </option>
