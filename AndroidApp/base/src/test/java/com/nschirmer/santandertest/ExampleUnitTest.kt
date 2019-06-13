@@ -1,4 +1,4 @@
-package com.nschirmer.stantandertest
+package com.nschirmer.santandertest
 
 import org.junit.Test
 

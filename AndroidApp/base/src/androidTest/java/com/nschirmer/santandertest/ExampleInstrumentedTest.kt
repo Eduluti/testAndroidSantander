@@ -1,4 +1,4 @@
-package com.nschirmer.stantandertest
+package com.nschirmer.santandertest
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
