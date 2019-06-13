@@ -1,2 +1,2 @@
-include ':base', ':widgets', ':login', ':statements', ':webservice'
+include ':base', ':widgets', ':login', ':statements', ':webservice', ':responseobjects'
 rootProject.name='Stantander Test'
