@@ -1,32 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- COMMONS THEMES -->
-    <style name="NoActionBar" parent="Theme.AppCompat.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-    </style>
-
-    <style name="FullScreen" parent="NoActionBar">
-        <item name="android:windowFullscreen">true</item>
-    </style>
-
-    <style name="TransparentStatusBar" parent="NoActionBar">
-        <item name="android:windowTranslucentStatus">true</item>
-        <item name="android:windowTranslucentNavigation">true</item>
-    </style>
-
-
-
+    <!-- BUTTON RAW
+    There is more default configs to button in bools and dimens -->
     <style name="Button" parent="Widget.AppCompat.Button">
         <item name="android:textAllCaps">@bool/button_all_caps</item>
         <item name="android:textSize">@dimen/button_text_size</item>
         <item name="android:paddingStart">@dimen/button_padding_horizontal</item>
         <item name="android:paddingEnd">@dimen/button_padding_horizontal</item>
     </style>
-
-
-
 
 
 </resources>
