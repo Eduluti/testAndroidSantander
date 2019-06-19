@@ -12,7 +12,7 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
-            android:name="com.nschirmer.santandertest.AppInit">
+            android:name=".AppInit">
 
         <activity
                 android:name=".screens.SplashScreenActivity"
