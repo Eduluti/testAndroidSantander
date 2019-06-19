@@ -47,7 +47,7 @@ android {
 
 dependencies {
     api fileTree(dir: 'libs', include: ['*.jar'])
-    api project(':widgets')
+    api project(':core-ui')
     api project(':webservice')
 
     api 'com.google.android.play:core:1.6.1'
