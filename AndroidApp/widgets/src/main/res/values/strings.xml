@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Widgets</string>
+    <string name="placeholder_button">Button</string>
 </resources>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- common -->
+    <attr name="title" format="string"/>
+    <attr name="description" format="string"/>
+    <attr name="text_color" format="color"/>
+    <attr name="color" format="color"/>
+    <attr name="is_clickable" format="boolean"/>
+
+
+    <!-- custom shadow -->
+    <attr name="has_shadow" format="boolean"/>
+    <attr name="shadow_distance" format="dimension"/>
+    <attr name="shadow_angle" format="float"/>
+    <attr name="shadow_radius" format="dimension"/>
+    <attr name="shadow_color" format="color"/>
+
+
+    <!-- custom shadow view -->
+    <declare-styleable name="OutlineShadowView">
+        <attr name="has_shadow"/>
+        <attr name="shadow_distance"/>
+        <attr name="shadow_angle"/>
+        <attr name="shadow_radius"/>
+        <attr name="shadow_color"/>
+    </declare-styleable>
+
+
+    <!-- custom button view -->
+    <declare-styleable name="Button">
+        <attr name="title"/>
+        <attr name="description"/>
+        <attr name="has_shadow"/>
+    </declare-styleable>
+
+
+</resources>
