@@ -163,6 +163,12 @@ class OutlineShadowView @JvmOverloads constructor(context: Context, attrs: Attri
     }
 
 
+    override fun onWindowVisibilityChanged(visibility: Int) {
+        needToDrawShadow = true
+        super.onWindowVisibilityChanged(visibility)
+    }
+
+
     override fun dispatchDraw(canvasView: Canvas?) {
         if(hasShadow){
             drawShadow(canvasView)
