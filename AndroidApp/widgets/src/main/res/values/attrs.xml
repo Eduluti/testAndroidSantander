@@ -32,10 +32,6 @@
         <attr name="title"/>
         <attr name="description"/>
         <attr name="has_shadow"/>
-        <attr name="shadow_distance"/>
-        <attr name="shadow_angle"/>
-        <attr name="shadow_radius"/>
-        <attr name="shadow_color"/>
     </declare-styleable>
 
 
