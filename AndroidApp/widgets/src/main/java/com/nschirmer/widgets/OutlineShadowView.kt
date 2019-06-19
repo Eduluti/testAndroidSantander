@@ -102,17 +102,17 @@ class OutlineShadowView @JvmOverloads constructor(context: Context, attrs: Attri
     init {
         setWillNotDraw(false)
         setLayerType(View.LAYER_TYPE_HARDWARE, paint)
-        setAttributes(context.obtainStyledAttributes(attrs, R.styleable.OutlineShadow))
+        setAttributes(context.obtainStyledAttributes(attrs, R.styleable.OutlineShadowView))
     }
 
 
     private fun setAttributes(typedArray: TypedArray){
         try {
-            hasShadow = typedArray.getBoolean(R.styleable.OutlineShadow_has_shadow, true)
-            radius = typedArray.getDimension(R.styleable.OutlineShadow_shadow_radius, DEFAULT_RADIUS)
-            distance = typedArray.getDimension(R.styleable.OutlineShadow_shadow_distance, DEFAULT_DISTANCE)
-            angle = typedArray.getFloat(R.styleable.OutlineShadow_shadow_angle, DEFAULT_ANGLE)
-            color = typedArray.getColor(R.styleable.OutlineShadow_shadow_color, DEFAULT_COLOR)
+            hasShadow = typedArray.getBoolean(R.styleable.OutlineShadowView_has_shadow, true)
+            radius = typedArray.getDimension(R.styleable.OutlineShadowView_shadow_radius, DEFAULT_RADIUS)
+            distance = typedArray.getDimension(R.styleable.OutlineShadowView_shadow_distance, DEFAULT_DISTANCE)
+            angle = typedArray.getFloat(R.styleable.OutlineShadowView_shadow_angle, DEFAULT_ANGLE)
+            color = typedArray.getColor(R.styleable.OutlineShadowView_shadow_color, DEFAULT_COLOR)
 
         } finally {
             typedArray.recycle()
