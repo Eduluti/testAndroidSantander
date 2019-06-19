@@ -58,7 +58,7 @@ class OutlineShadowView @JvmOverloads constructor(context: Context, attrs: Attri
 
 
     // Internal shadow values
-    var alpha = MAX_ALPHA
+    var alpha = 0
     var offsetX = 0f
     var offsetY = 0f
     var color = DEFAULT_COLOR
@@ -71,7 +71,7 @@ class OutlineShadowView @JvmOverloads constructor(context: Context, attrs: Attri
     var angle = DEFAULT_ANGLE
         set(value) {
             if(value in MIN_ANGLE .. MAX_ANGLE){
-                field = Math.max(MIN_ANGLE, Math.min(angle, MAX_ANGLE))
+                field = Math.max(MIN_ANGLE, Math.min(value, MAX_ANGLE))
                 resetShadow()
             }
         }
@@ -121,8 +121,8 @@ class OutlineShadowView @JvmOverloads constructor(context: Context, attrs: Attri
 
 
     private fun resetShadow(){
-        offsetX = getShadowOffset()
-        offsetY = getShadowOffset()
+        offsetX = (distance * Math.cos(angle / 180.0f * Math.PI)).toFloat()
+        offsetY = (distance * Math.sin(angle / 180.0f * Math.PI)).toFloat()
 
         (distance + radius).toInt().let {
             setPadding(it, it, it, it)
@@ -130,9 +130,6 @@ class OutlineShadowView @JvmOverloads constructor(context: Context, attrs: Attri
 
         requestLayout()
     }
-
-
-    private fun getShadowOffset(): Float = (distance * Math.cos(angle / 180.0f * Math.PI)).toFloat()
 
 
     override fun onDetachedFromWindow() {
@@ -211,7 +208,6 @@ class OutlineShadowView @JvmOverloads constructor(context: Context, attrs: Attri
 
     private fun redrawBitmapShadow(){
         resetBitmapBounds()
-        needToDrawShadow = false
         super.dispatchDraw(canvas)
         configureShadowAlpha()
     }
@@ -229,18 +225,14 @@ class OutlineShadowView @JvmOverloads constructor(context: Context, attrs: Attri
 
 
     private fun resetBitmapBounds(){
-        setBitmapBounds(bounds.width(), bounds.height())
+        bitmap = Bitmap.createBitmap(bounds.width(), bounds.height(), Bitmap.Config.ARGB_8888)
         canvas.setBitmap(bitmap)
+        needToDrawShadow = false
     }
 
 
     private fun createShadowPlaceHolder(){
-        setBitmapBounds(1, 1)
-    }
-
-
-    private fun setBitmapBounds(width: Int, height: Int){
-        bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565)
+        bitmap = Bitmap.createBitmap(1, 1, Bitmap.Config.RGB_565)
     }
 
 }
