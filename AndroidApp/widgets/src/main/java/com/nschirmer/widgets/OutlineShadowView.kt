@@ -32,17 +32,16 @@ class OutlineShadowView @JvmOverloads constructor(context: Context, attrs: Attri
 
     companion object {
         // Default internal shadow values
-        private val DEFAULT_RADIUS = 30.0f
-        private val DEFAULT_DISTANCE = 15.0f
-        private val DEFAULT_ANGLE = 45.0f
-        private val DEFAULT_COLOR = Color.DKGRAY
-
+        const val DEFAULT_RADIUS = 15.0f
+        const val DEFAULT_DISTANCE = 10.0f
+        const val DEFAULT_ANGLE = 90.0f
+        const val DEFAULT_COLOR = Color.DKGRAY
 
         // Internal shadow bounds values
-        private val MAX_ALPHA = 255
-        private val MAX_ANGLE = 360.0f
-        private val MIN_RADIUS = 0.1f
-        private val MIN_ANGLE = 0.0f
+        const val MAX_ALPHA = 255
+        const val MIN_RADIUS = 0.1f
+        const val MAX_ANGLE = 360.0f
+        const val MIN_ANGLE = 0.0f
     }
 
 
