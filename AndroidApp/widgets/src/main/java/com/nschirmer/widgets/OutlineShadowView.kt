@@ -59,9 +59,9 @@ class OutlineShadowView @JvmOverloads constructor(context: Context, attrs: Attri
 
 
     // Internal shadow values
-    var alpha = 0
-    var offsetX = 0f
-    var offsetY = 0f
+    private var alpha = 0
+    private var offsetX = 0f
+    private var offsetY = 0f
     var color = DEFAULT_COLOR
         set(color) {
             field = color
