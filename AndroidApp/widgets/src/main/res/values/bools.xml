@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- BUTTON -->
+    <bool name="button_all_caps">false</bool>
+
+</resources>
