@@ -31,7 +31,8 @@
     <declare-styleable name="Button">
         <attr name="title"/>
         <attr name="description"/>
-        <attr name="has_shadow"/>
+        <attr name="text_color"/>
+        <attr name="color"/>
     </declare-styleable>
 
 
