@@ -141,9 +141,6 @@ class OutlineShadowView @JvmOverloads constructor(context: Context, attrs: Attri
             angle = typedArray.getFloat(R.styleable.OutlineShadowView_shadow_angle, DEFAULT_ANGLE)
             color = typedArray.getColor(R.styleable.OutlineShadowView_shadow_color, DEFAULT_COLOR)
 
-
-            distance
-
         } finally {
             typedArray.recycle()
         }
