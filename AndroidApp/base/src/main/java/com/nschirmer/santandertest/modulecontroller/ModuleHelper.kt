@@ -1,4 +1,4 @@
-package com.nschirmer.santandertest
+package com.nschirmer.santandertest.modulecontroller
 
 enum class ModuleHelper(val moduleName: String, val packageName: String) {
 

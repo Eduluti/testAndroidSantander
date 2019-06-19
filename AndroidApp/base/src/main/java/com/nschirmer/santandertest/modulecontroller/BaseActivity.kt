@@ -1,4 +1,4 @@
-package com.nschirmer.santandertest
+package com.nschirmer.santandertest.modulecontroller
 
 import android.annotation.SuppressLint
 import android.content.Intent
