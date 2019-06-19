@@ -9,17 +9,23 @@ import android.widget.FrameLayout
 
 
 /**
- *  This class create a shadow for a Child View, by creating a blurred bitmap within the Child View perimeter
+ *  This class create a shadow for a Child View, by creating a blurred bitmap within the Child View perimeter.
  *
- *  Usage:
+ *  You can use it for a single View or for a hole group of Views inside a Layout Group (LinearLayout, ConstraintLayout...)
+ *  note: all views inside the Layout Group will have the shadows.
+ *
+ *  @sample
+ *  Usage on XML:
         <com.nschirmer.widgets.OutlineShadowView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            //TODO
+
+            app:shadow_distance="2dp"
+            app:shadow_radius="10dp"
             app:has_shadow="true"
             app:shadow_color="@color/blue">
 
-            <SomeView
+            <Some View or Layout Group
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
@@ -62,6 +68,11 @@ class OutlineShadowView @JvmOverloads constructor(context: Context, attrs: Attri
     private var alpha = 0
     private var offsetX = 0f
     private var offsetY = 0f
+
+    // Dynamic shadow values
+    /**
+     * Color of the shadow. The default value is [DEFAULT_COLOR].
+     * **/
     var color = DEFAULT_COLOR
         set(color) {
             field = color
@@ -69,6 +80,9 @@ class OutlineShadowView @JvmOverloads constructor(context: Context, attrs: Attri
             resetShadow()
         }
 
+    /**
+     * Angle of the shadow. You can only set between [MIN_ANGLE] and [MAX_ANGLE].
+     * **/
     var angle = DEFAULT_ANGLE
         set(value) {
             if(value in MIN_ANGLE .. MAX_ANGLE){
@@ -77,12 +91,20 @@ class OutlineShadowView @JvmOverloads constructor(context: Context, attrs: Attri
             }
         }
 
+    /**
+     * Harsh size of the shadow. The default value is [DEFAULT_DISTANCE].
+     * This will emulate the [elevation](https://material.io/design/environment/elevation.html) size.
+     * **/
     var distance = DEFAULT_DISTANCE
         set(value) {
             field = value
             resetShadow()
         }
 
+    /**
+     * Spread size of the shadow. The default value is [DEFAULT_RADIUS].
+     * This will change the lightness of the shadow on the borders. To create a more smooth or harsh shadow.
+     * **/
     var radius = DEFAULT_RADIUS
         set(value) {
             field = Math.max(MIN_RADIUS, value)
@@ -93,6 +115,9 @@ class OutlineShadowView @JvmOverloads constructor(context: Context, attrs: Attri
             }
         }
 
+    /**
+     * Change if the View or Layout Group will have the shadow enabled. It comes enabled by default.
+     * **/
     var hasShadow: Boolean = true
         set(hasShadow) {
             field = hasShadow
@@ -100,6 +125,7 @@ class OutlineShadowView @JvmOverloads constructor(context: Context, attrs: Attri
         }
 
 
+    // Draw the view attributes on initialization
     init {
         setWillNotDraw(false)
         setLayerType(View.LAYER_TYPE_HARDWARE, paint)
@@ -114,6 +140,9 @@ class OutlineShadowView @JvmOverloads constructor(context: Context, attrs: Attri
             distance = typedArray.getDimension(R.styleable.OutlineShadowView_shadow_distance, DEFAULT_DISTANCE)
             angle = typedArray.getFloat(R.styleable.OutlineShadowView_shadow_angle, DEFAULT_ANGLE)
             color = typedArray.getColor(R.styleable.OutlineShadowView_shadow_color, DEFAULT_COLOR)
+
+
+            distance
 
         } finally {
             typedArray.recycle()
@@ -133,6 +162,7 @@ class OutlineShadowView @JvmOverloads constructor(context: Context, attrs: Attri
     }
 
 
+    // When the view is not visible anymore, it will clear the shadow to free up some memory
     override fun onDetachedFromWindow() {
         super.onDetachedFromWindow()
         clearShadowBitmap()
@@ -145,6 +175,7 @@ class OutlineShadowView @JvmOverloads constructor(context: Context, attrs: Attri
     }
 
 
+    // Calculate the raw View bounds to draw the shadow
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
         setShadowBounds()
@@ -156,18 +187,21 @@ class OutlineShadowView @JvmOverloads constructor(context: Context, attrs: Attri
     }
 
 
+    // Setting the need to draw the shadow when the View changes or is initializing
     override fun requestLayout() {
         needToDrawShadow = true
         super.requestLayout()
     }
 
 
+    // If anything occurs with the View visibility, trigger the action to redraw the shadow
     override fun onWindowVisibilityChanged(visibility: Int) {
         needToDrawShadow = true
         super.onWindowVisibilityChanged(visibility)
     }
 
 
+    // Draw the shadow when the child Views are created
     override fun dispatchDraw(canvasView: Canvas?) {
         if(hasShadow){
             drawShadow(canvasView)
@@ -218,6 +252,7 @@ class OutlineShadowView @JvmOverloads constructor(context: Context, attrs: Attri
         super.dispatchDraw(canvas)
         configureShadowAlpha()
     }
+
 
     private fun configureShadowAlpha(){
         bitmap?.extractAlpha().let {
