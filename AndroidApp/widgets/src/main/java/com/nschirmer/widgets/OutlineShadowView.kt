@@ -30,18 +30,20 @@ import android.widget.FrameLayout
 //This class has a lot of inspiration from ShadowLayout by Devlight
 class OutlineShadowView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyle: Int = 0): FrameLayout(context, attrs, defStyle) {
 
-    // Default internal shadow values
-    private val DEFAULT_RADIUS = 30.0f
-    private val DEFAULT_DISTANCE = 15.0f
-    private val DEFAULT_ANGLE = 45.0f
-    private val DEFAULT_COLOR = Color.DKGRAY
+    companion object {
+        // Default internal shadow values
+        private val DEFAULT_RADIUS = 30.0f
+        private val DEFAULT_DISTANCE = 15.0f
+        private val DEFAULT_ANGLE = 45.0f
+        private val DEFAULT_COLOR = Color.DKGRAY
 
 
-    // Internal shadow bounds values
-    private val MAX_ALPHA = 255
-    private val MAX_ANGLE = 360.0f
-    private val MIN_RADIUS = 0.1f
-    private val MIN_ANGLE = 0.0f
+        // Internal shadow bounds values
+        private val MAX_ALPHA = 255
+        private val MAX_ANGLE = 360.0f
+        private val MIN_RADIUS = 0.1f
+        private val MIN_ANGLE = 0.0f
+    }
 
 
     // Shadow image
