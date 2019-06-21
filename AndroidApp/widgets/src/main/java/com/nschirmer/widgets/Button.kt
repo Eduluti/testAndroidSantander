@@ -64,7 +64,7 @@ class Button @JvmOverloads constructor(context: Context, attrs: AttributeSet? = 
 
     /**
      * Change the button and shadow color.
-     * @param color is a [Color]
+     * [color] is a [Color]
      * **/
     var color: Int?
         set(color) {
@@ -77,7 +77,7 @@ class Button @JvmOverloads constructor(context: Context, attrs: AttributeSet? = 
 
     /**
      * Change the label text color.
-     * @param color is a [Color]
+     * [color] is a [Color]
      * **/
     var textColor: Int?
         set(color){
