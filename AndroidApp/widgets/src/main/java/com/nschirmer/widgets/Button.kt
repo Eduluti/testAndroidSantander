@@ -85,6 +85,8 @@ class Button @JvmOverloads constructor(context: Context, attrs: AttributeSet? = 
         } get() = button.currentTextColor
 
 
+    private var cornerRadius = resources.getDimension(R.dimen.corner_radius)
+
     private var shadowColor: Int?
         set(color) {
             if(color != null) button_shadow.color = ColorUtils.setAlphaComponent(color, SHADOW_ALPHA)
