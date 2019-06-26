@@ -4,4 +4,7 @@
     <!-- BUTTON -->
     <bool name="button_all_caps">false</bool>
 
+    <!-- INPUT TEXT -->
+    <bool name="inputtext_toggleable_default">false</bool>
+
 </resources>
