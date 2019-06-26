@@ -147,8 +147,8 @@ class Button @JvmOverloads constructor(context: Context, attrs: AttributeSet? = 
     private fun setColorSelection(color: Int): StateListDrawable {
         StateListDrawable().run {
             setExitFadeDuration(PRESS_DURATION)
-            addState(intArrayOf(android.R.attr.state_pressed), getRoundedTintedDrawable(getDarkerColor(color)))
-            addState(intArrayOf(), getRoundedTintedDrawable(color))
+            addState(ViewState.PRESSED.state, getRoundedTintedDrawable(getDarkerColor(color))) // Pressed
+            addState(ViewState.DEFAULT.state, getRoundedTintedDrawable(color)) // Default
             return this
         }
     }
