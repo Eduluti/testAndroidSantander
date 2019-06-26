@@ -71,7 +71,9 @@ class Button @JvmOverloads constructor(context: Context, attrs: AttributeSet? = 
             if(color != null) {
                 setButtonSelector(color)
                 shadowColor = color
-            }
+
+            } else throw(NullPointerException("Null not allowed"))
+
         } get() = button.background.state[1]
 
 
@@ -82,6 +84,7 @@ class Button @JvmOverloads constructor(context: Context, attrs: AttributeSet? = 
     var textColor: Int?
         set(color){
             if(color != null) button.setTextColor(color)
+            else throw(NullPointerException("Null not allowed"))
 
         } get() = button.currentTextColor
 
@@ -91,6 +94,7 @@ class Button @JvmOverloads constructor(context: Context, attrs: AttributeSet? = 
     private var shadowColor: Int?
         set(color) {
             if(color != null) button_shadow.color = ColorUtils.setAlphaComponent(color, SHADOW_ALPHA)
+            else throw(NullPointerException("Null not allowed"))
 
         } get() = button_shadow.color
 
