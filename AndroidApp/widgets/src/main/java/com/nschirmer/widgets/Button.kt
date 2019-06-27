@@ -4,8 +4,9 @@ import android.annotation.TargetApi
 import android.content.Context
 import android.content.res.ColorStateList
 import android.content.res.TypedArray
+import android.graphics.BlendMode
+import android.graphics.BlendModeColorFilter
 import android.graphics.Color
-import android.graphics.PorterDuff
 import android.graphics.drawable.*
 import android.graphics.drawable.shapes.RoundRectShape
 import android.os.Build
@@ -63,31 +64,37 @@ class Button @JvmOverloads constructor(context: Context, attrs: AttributeSet? = 
 
     /**
      * Change the button and shadow color.
-     * @param color is a [Color]
+     * [color] is a [Color]
      * **/
     var color: Int?
         set(color) {
             if(color != null) {
                 setButtonSelector(color)
                 shadowColor = color
-            }
+
+            } else throw(NullPointerException("Null not allowed"))
+
         } get() = button.background.state[1]
 
 
     /**
      * Change the label text color.
-     * @param color is a [Color]
+     * [color] is a [Color]
      * **/
     var textColor: Int?
         set(color){
             if(color != null) button.setTextColor(color)
+            else throw(NullPointerException("Null not allowed"))
 
         } get() = button.currentTextColor
 
 
+    private var cornerRadius = resources.getDimension(R.dimen.corner_radius)
+
     private var shadowColor: Int?
         set(color) {
             if(color != null) button_shadow.color = ColorUtils.setAlphaComponent(color, SHADOW_ALPHA)
+            else throw(NullPointerException("Null not allowed"))
 
         } get() = button_shadow.color
 
@@ -105,7 +112,6 @@ class Button @JvmOverloads constructor(context: Context, attrs: AttributeSet? = 
             description = typedArray.getString(R.styleable.Button_description) ?: title
             color = typedArray.getColor(R.styleable.Button_color, Color.GRAY)
             textColor = typedArray.getColor(R.styleable.Button_text_color, Color.BLACK)
-
 
         } finally {
             typedArray.recycle()
@@ -145,8 +151,8 @@ class Button @JvmOverloads constructor(context: Context, attrs: AttributeSet? = 
     private fun setColorSelection(color: Int): StateListDrawable {
         StateListDrawable().run {
             setExitFadeDuration(PRESS_DURATION)
-            addState(intArrayOf(android.R.attr.state_pressed), getRoundedTintedDrawable(getDarkerColor(color)))
-            addState(intArrayOf(), getRoundedTintedDrawable(color))
+            addState(ViewState.PRESSED.state, getRoundedTintedDrawable(getDarkerColor(color))) // Pressed
+            addState(ViewState.DEFAULT.state, getRoundedTintedDrawable(color)) // Default
             return this
         }
     }
@@ -154,11 +160,22 @@ class Button @JvmOverloads constructor(context: Context, attrs: AttributeSet? = 
 
     private fun getRoundedTintedDrawable(color: Int): Drawable {
         PaintDrawable().run {
-            val radius = resources.getDimension(R.dimen.button_corner_radius)
-            shape = RoundRectShape(floatArrayOf(radius, radius, radius, radius, radius, radius, radius, radius), null, null)
-            setColorFilter(color, PorterDuff.Mode.SRC_IN)
+            shape = RoundRectShape(floatArrayOf(cornerRadius, cornerRadius, cornerRadius, cornerRadius, cornerRadius,
+                cornerRadius, cornerRadius, cornerRadius), null, null)
+
+            colorFilter = BlendModeColorFilter(color, BlendMode.SRC_IN)
             return this
         }
+    }
+
+
+    @RequiresApi(21) @TargetApi(21)
+    private fun setColorRipple(color: Int): RippleDrawable {
+        button.background = getRoundedTintedDrawable(color)
+        return RippleDrawable(ColorStateList(
+            arrayOf(intArrayOf()),
+            intArrayOf(getDarkerColor(color))),
+            button.background, null)
     }
 
 
@@ -170,16 +187,6 @@ class Button @JvmOverloads constructor(context: Context, attrs: AttributeSet? = 
         Color.colorToHSV(color, hsv)
         hsv[2] *= BRIGHTNESS_REDUCTION // change the brightness of the color
         return Color.HSVToColor(hsv)
-    }
-
-
-    @RequiresApi(21) @TargetApi(21)
-    private fun setColorRipple(color: Int): RippleDrawable {
-        button.background = getRoundedTintedDrawable(color)
-        return RippleDrawable(ColorStateList(
-            arrayOf(intArrayOf()),
-            intArrayOf(getDarkerColor(color))),
-            button.background, null)
     }
 
 
