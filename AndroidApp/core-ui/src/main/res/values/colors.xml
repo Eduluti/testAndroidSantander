@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- app common colors -->
+    <color name="gray_light">#bdc6d2</color>
+    <color name="gray">#717a88</color>
+    <color name="orange">#ff5500</color>
+    <color name="white">#FFF</color>
+    <color name="blue_shadow">#853341EB</color>
+    <color name="blue">#3341eb</color>
+    <color name="blue_dark">#212A9B</color>
+
+    <!-- main colors -->
+    <color name="colorPrimary">@color/white</color>
+    <color name="colorPrimaryDark">@color/gray_light</color>
+    <color name="colorAccent">@color/blue</color>
+
+    <!-- text -->
+    <color name="light_text">@color/gray_light</color>
+    <color name="text">@color/gray</color>
+</resources>
