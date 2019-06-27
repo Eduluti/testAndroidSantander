@@ -10,5 +10,42 @@
         <item name="android:paddingEnd">@dimen/button_padding_horizontal</item>
     </style>
 
+    <!-- INPUT TEXT -->
+    <style name="InputText" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+        <item name="android:layout_marginBottom">@dimen/inputtext_inner_padding</item>
+        <item name="android:layout_marginTop">@dimen/inputtext_inner_padding</item>
+        <item name="android:layout_marginStart">@dimen/inputtext_out_margin</item>
+        <item name="android:layout_marginEnd">@dimen/inputtext_out_margin</item>
+        <item name="android:textSize">@dimen/inputtext_text_size</item>
+        <item name="android:textColor">@android:color/darker_gray</item>
+        <item name="hintTextAppearance">@style/InputTextHint</item>
+        <item name="errorEnabled">true</item>
+        <item name="errorTextAppearance">@style/InputTextError</item>
+        <item name="passwordToggleEnabled">true</item>
+        <item name="passwordToggleTint">@android:color/holo_blue_bright</item>
+        <item name="boxCornerRadiusBottomStart">@dimen/corner_radius</item>
+        <item name="boxCornerRadiusTopEnd">@dimen/corner_radius</item>
+        <item name="boxCornerRadiusTopStart">@dimen/corner_radius</item>
+        <item name="boxCornerRadiusBottomEnd">@dimen/corner_radius</item>
+        <item name="boxStrokeColor">@android:color/holo_red_dark</item>
+        <item name="boxStrokeWidth">@dimen/inputtext_box_stroke_width</item>
+    </style>
+
+    <style name="InputTextField">
+        <item name="android:maxLines">1</item>
+        <item name="android:lines">1</item>
+        <item name="android:inputType">text</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="InputTextHint" parent="TextAppearance.Design.Hint">
+        <item name="android:textSize">@dimen/inputtext_hint_size</item>
+        <item name="android:textColor">@android:color/darker_gray</item>
+    </style>
+
+    <style name="InputTextError" parent="TextAppearance.Design.Error">
+        <item name="android:textSize">@dimen/inputtext_error_size</item>
+        <item name="android:textColor">@android:color/holo_red_dark</item>
+    </style>
 
 </resources>

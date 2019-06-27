@@ -11,6 +11,7 @@ class SplashScreenActivity : BaseActivity() {
 
         openModule(ModuleHelper.LOGIN)
         finish()
+        overridePendingTransition(0, 0)
     }
 
 }
