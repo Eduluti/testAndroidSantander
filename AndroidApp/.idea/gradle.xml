@@ -9,6 +9,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/base" />
+            <option value="$PROJECT_DIR$/core-ui" />
             <option value="$PROJECT_DIR$/login" />
             <option value="$PROJECT_DIR$/responseobjects" />
             <option value="$PROJECT_DIR$/statements" />

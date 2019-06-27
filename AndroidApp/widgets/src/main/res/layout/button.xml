@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.nschirmer.widgets.OutlineShadowView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/button_shadow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:has_shadow="true"
+        app:shadow_color="@color/blue_shadow">
+
+    <Button android:id="@+id/button"
+            android:text="@string/placeholder_button"
+            style="@style/Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+</com.nschirmer.widgets.OutlineShadowView>
