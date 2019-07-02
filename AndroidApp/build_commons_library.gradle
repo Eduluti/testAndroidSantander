@@ -1,0 +1,23 @@
+apply plugin: 'com.android.library'
+apply from: '../build_commons.gradle'
+
+
+android {
+
+	defaultConfig{
+		consumerProguardFiles 'consumer-rules.pro'
+	}
+
+	buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation kotlinStdLib
+    implementation androidxAppCompat
+    implementation amdroidxKtxCore
+}
