@@ -13,6 +13,7 @@
             <option value="$PROJECT_DIR$/login" />
             <option value="$PROJECT_DIR$/responseobjects" />
             <option value="$PROJECT_DIR$/statements" />
+            <option value="$PROJECT_DIR$/validator" />
             <option value="$PROJECT_DIR$/webservice" />
             <option value="$PROJECT_DIR$/widgets" />
           </set>

@@ -46,6 +46,7 @@ ext {
 	library_WebService = ":webservice"
 	library_Widgets = ":widgets"
 	library_ReponseObjects = ":responseobjects"
+	library_Validator = ":validator"
 
 
 
