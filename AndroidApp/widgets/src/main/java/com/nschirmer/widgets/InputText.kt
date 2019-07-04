@@ -31,7 +31,7 @@ class InputText @JvmOverloads constructor(context: Context, attrs: AttributeSet?
         set(text){
             inputtext_field.setText(text)
 
-        } get() = inputtext_field.text.toString()
+        } get() = if(inputtext_field.text != null) inputtext_field.text.toString() else null
 
 
     /** Hint of the edit text **/
@@ -39,7 +39,7 @@ class InputText @JvmOverloads constructor(context: Context, attrs: AttributeSet?
         set(hint) {
             inputtext_layout.hint = hint
 
-        } get() = inputtext_layout.hint.toString()
+        } get() = if(inputtext_layout.hint != null) inputtext_layout.hint.toString() else null
 
 
     /** Set the max char lenght of input text
@@ -57,7 +57,7 @@ class InputText @JvmOverloads constructor(context: Context, attrs: AttributeSet?
         set(description) {
             inputtext_layout.contentDescription = description ?: inputtext_layout.hint
         }
-        get() = inputtext_layout.contentDescription.toString()
+        get() = if(inputtext_layout.contentDescription != null) inputtext_layout.contentDescription.toString() else null
 
 
     /** Error text of the edit text
