@@ -38,7 +38,7 @@
 
     <!-- INPUT TEXT -->
     <declare-styleable name="InputText">
-        <attr name="text"/>
+        <attr name="text" format="string"/>
         <attr name="hint" format="string"/>
         <attr name="maxLength" format="integer"/>
         <attr name="description"/>
