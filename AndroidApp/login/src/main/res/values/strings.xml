@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="login_input_email_label">User</string>
-    <string name="login_input_email_error_empty">É necessário preencher com seu usuário</string>
+    <string name="login_input_user_error_empty">É necessário preencher com seu usuário</string>
     <string name="login_input_password_label">Password</string>
     <string name="login_input_password_error_empty">É necessário preencher com sua senha</string>
     <string name="login_input_error_not_valid">Usuário ou senha inválido</string>

@@ -89,22 +89,59 @@ class LoginActivity : BaseActivity() {
 
 
     /**
-     * Will check
+     * Will check if the
      * **/
     private fun checkInputs(){
+        when {
+            userInputIsValid() && passwordInputIsValid() -> openAccount()
+            else -> {
+                setInputUserError(R.string.login_input_error_not_valid)
+                login_input_password.addTextChangedListener {
+                    login_input_user.removeError()
+                }
+            }
+        }
+    }
 
-        login_input_email.errorText = "bla"
 
-        //openAccount()
+    private fun userInputIsValid(): Boolean{
+        return when {
+            login_input_user.isEmpty() -> {
+                setInputUserError(R.string.login_input_user_error_empty)
+                false
+            }
+
+            else -> login_input_user.emailIsValid() or login_input_user.cpfIsValid()
+        }
+    }
+
+
+    private fun setInputUserError(errorMessageRes: Int){
+        login_input_user.errorText = getString(errorMessageRes)
+    }
+
+
+
+    private fun passwordInputIsValid(): Boolean{
+        return when {
+            login_input_password.isEmpty() -> {
+                setInputPasswordError(R.string.login_input_password_error_empty)
+                false
+            }
+
+            else -> login_input_password.passwordIsValid()
+        }
+    }
+
+
+    private fun setInputPasswordError(errorMessageRes: Int){
+        login_input_user.errorText = getString(errorMessageRes)
     }
 
 
     private fun openAccount(){
         openModule(ModuleHelper.STATEMENTS)
     }
-
-
-
 
 
 }
