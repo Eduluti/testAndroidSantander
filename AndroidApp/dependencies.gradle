@@ -6,7 +6,7 @@ ext {
 
 	// Default Config
 	projectSdkVersion = 29
-	projectMinSdkVersion = 16
+	projectMinSdkVersion = 19
 
 	// Classpath
 	buildToolsVersion = '3.6.0-alpha04'
