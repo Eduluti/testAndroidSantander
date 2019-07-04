@@ -15,6 +15,9 @@ import android.view.View
 import android.widget.FrameLayout
 import androidx.core.widget.addTextChangedListener
 import com.google.android.material.textfield.TextInputLayout
+import com.nschirmer.validator.CpfValidation
+import com.nschirmer.validator.EmailValidation
+import com.nschirmer.validator.PasswordValidation
 import com.nschirmer.widgets.InputText.InputType.*
 import kotlinx.android.synthetic.main.input_text.view.*
 
@@ -31,7 +34,7 @@ class InputText @JvmOverloads constructor(context: Context, attrs: AttributeSet?
         set(text){
             inputtext_field.setText(text)
 
-        } get() = inputtext_field.text.toString()
+        } get() = if(inputtext_field.text != null) inputtext_field.text.toString() else null
 
 
     /** Hint of the edit text **/
@@ -39,7 +42,7 @@ class InputText @JvmOverloads constructor(context: Context, attrs: AttributeSet?
         set(hint) {
             inputtext_layout.hint = hint
 
-        } get() = inputtext_layout.hint.toString()
+        } get() = if(inputtext_layout.hint != null) inputtext_layout.hint.toString() else null
 
 
     /** Set the max char lenght of input text
@@ -57,7 +60,7 @@ class InputText @JvmOverloads constructor(context: Context, attrs: AttributeSet?
         set(description) {
             inputtext_layout.contentDescription = description ?: inputtext_layout.hint
         }
-        get() = inputtext_layout.contentDescription.toString()
+        get() = if(inputtext_layout.contentDescription != null) inputtext_layout.contentDescription.toString() else null
 
 
     /** Error text of the edit text
@@ -289,8 +292,8 @@ class InputText @JvmOverloads constructor(context: Context, attrs: AttributeSet?
             description != null -> description!!
             text != null -> text!!
             hint != null -> hint!!
-            else -> throw(java.lang.NullPointerException(
-                "Not able to give a description. You need to fill the hint or the text")
+            else -> throw(java.lang.NullPointerException
+                ("Not able to give a description. You need to fill the hint or the text")
                     )
         }
     }
@@ -339,12 +342,30 @@ class InputText @JvmOverloads constructor(context: Context, attrs: AttributeSet?
     }
 
 
-    // TODO color
+
+    /** @return If the input text is a valid email. If the [text] is null then will always return false **/
+    fun cpfIsValid(): Boolean {
+        return when {
+            text != null -> CpfValidation(text!!).isValid()
+            else -> false
+        }
+    }
+
+
     /** Set input as hidden content with the eye icon to show/hide **/
     private fun setInputPassword(){
         inputtext_field.setRawInputType(android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD
                 or android.text.InputType.TYPE_CLASS_TEXT)
         inputtext_field.transformationMethod = PasswordTransformationMethod.getInstance()
+    }
+
+
+    /** @return If the input text is a valid password. If the [text] is null then will always return false **/
+    fun passwordIsValid(): Boolean {
+        return when {
+            text != null -> PasswordValidation(text!!).isValid()
+            else -> false
+        }
     }
 
 
@@ -365,11 +386,20 @@ class InputText @JvmOverloads constructor(context: Context, attrs: AttributeSet?
     }
 
 
-    // TODO validate email
     /** Set the input as e-mail **/
     private fun setInputEmail(){
         inputtext_field.setRawInputType(android.text.InputType.TYPE_CLASS_TEXT
                 or  android.text.InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS)
+    }
+
+
+
+    /** @return If the input text is a valid email. If the [text] is null then will always return false **/
+    fun emailIsValid(): Boolean {
+        return when {
+            text != null -> EmailValidation(text!!).isValid()
+            else -> false
+        }
     }
 
 

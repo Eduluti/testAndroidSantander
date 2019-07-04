@@ -59,7 +59,7 @@ class Button @JvmOverloads constructor(context: Context, attrs: AttributeSet? = 
         set(description){
             button.contentDescription = description
 
-        } get() = button.contentDescription.toString()
+        } get() = if(button.contentDescription != null) button.contentDescription.toString() else null
 
 
     /**
