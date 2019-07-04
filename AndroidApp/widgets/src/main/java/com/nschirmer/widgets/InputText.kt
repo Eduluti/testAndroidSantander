@@ -289,8 +289,8 @@ class InputText @JvmOverloads constructor(context: Context, attrs: AttributeSet?
             description != null -> description!!
             text != null -> text!!
             hint != null -> hint!!
-            else -> throw(java.lang.NullPointerException(
-                "Not able to give a description. You need to fill the hint or the text")
+            else -> throw(java.lang.NullPointerException
+                ("Not able to give a description. You need to fill the hint or the text")
                     )
         }
     }
