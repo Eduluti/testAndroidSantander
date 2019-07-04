@@ -15,6 +15,9 @@ import android.view.View
 import android.widget.FrameLayout
 import androidx.core.widget.addTextChangedListener
 import com.google.android.material.textfield.TextInputLayout
+import com.nschirmer.validator.CpfValidation
+import com.nschirmer.validator.EmailValidation
+import com.nschirmer.validator.PasswordValidation
 import com.nschirmer.widgets.InputText.InputType.*
 import kotlinx.android.synthetic.main.input_text.view.*
 
@@ -339,12 +342,30 @@ class InputText @JvmOverloads constructor(context: Context, attrs: AttributeSet?
     }
 
 
-    // TODO color
+
+    /** @return If the input text is a valid email. If the [text] is null then will always return false **/
+    fun cpfIsValid(): Boolean {
+        return when {
+            text != null -> CpfValidation(text!!).isValid()
+            else -> false
+        }
+    }
+
+
     /** Set input as hidden content with the eye icon to show/hide **/
     private fun setInputPassword(){
         inputtext_field.setRawInputType(android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD
                 or android.text.InputType.TYPE_CLASS_TEXT)
         inputtext_field.transformationMethod = PasswordTransformationMethod.getInstance()
+    }
+
+
+    /** @return If the input text is a valid password. If the [text] is null then will always return false **/
+    fun passwordIsValid(): Boolean {
+        return when {
+            text != null -> PasswordValidation(text!!).isValid()
+            else -> false
+        }
     }
 
 
@@ -365,11 +386,20 @@ class InputText @JvmOverloads constructor(context: Context, attrs: AttributeSet?
     }
 
 
-    // TODO validate email
     /** Set the input as e-mail **/
     private fun setInputEmail(){
         inputtext_field.setRawInputType(android.text.InputType.TYPE_CLASS_TEXT
                 or  android.text.InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS)
+    }
+
+
+
+    /** @return If the input text is a valid email. If the [text] is null then will always return false **/
+    fun emailIsValid(): Boolean {
+        return when {
+            text != null -> EmailValidation(text!!).isValid()
+            else -> false
+        }
     }
 
 
