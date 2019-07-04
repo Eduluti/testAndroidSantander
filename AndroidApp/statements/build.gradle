@@ -1,28 +1,16 @@
 apply plugin: 'com.android.dynamic-feature'
-apply plugin: 'kotlin-android-extensions'
-apply plugin: 'kotlin-android'
+apply from: '../build_commons.gradle'
 
 android {
-    compileSdkVersion 28
-
 
     defaultConfig {
-        minSdkVersion 19
-        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
     }
 
-
-    flavorDimensions "serviceUrl"
-    productFlavors {
-        prod {}
-    }
-
-
 }
 
 dependencies {
-    implementation project(':base')
+    implementation project(module_Base)
 
 }

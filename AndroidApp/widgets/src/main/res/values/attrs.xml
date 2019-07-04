@@ -36,4 +36,25 @@
     </declare-styleable>
 
 
+    <!-- INPUT TEXT -->
+    <declare-styleable name="InputText">
+        <attr name="text"/>
+        <attr name="hint" format="string"/>
+        <attr name="maxLength" format="integer"/>
+        <attr name="description"/>
+        <attr name="color"/>
+        <attr name="border_color" format="color"/>
+        <attr name="hint_color" format="color"/>
+        <attr name="pass_toggle_color" format="color"/>
+        <attr name="error_color" format="color"/>
+        <attr name="type" format="enum">
+            <enum name="text" value="0"/>
+            <enum name="password" value="1"/>
+            <enum name="numbers" value="2"/>'
+            <enum name="email" value="3"/>
+        </attr>
+    </declare-styleable>
+
+
+
 </resources>

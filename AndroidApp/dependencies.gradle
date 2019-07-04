@@ -1,0 +1,82 @@
+ext {
+	// ====== VERSIONS ======
+
+	// Project variables version
+	kotlinVersion = '1.3.40'
+
+	// Default Config
+	projectSdkVersion = 29
+	projectMinSdkVersion = 16
+
+	// Classpath
+	buildToolsVersion = '3.6.0-alpha04'
+
+	// Internal
+	googlePlayCoreVersion = '1.6.1'
+
+	// Widgets
+	androidxAppCompatVersion = '1.0.2'
+	androidxKtxCoreVersion = '1.2.0-alpha02'
+	androidxConstraintVersion = '1.1.3'
+	androidxMaterialVersion = "1.0.0"
+
+	// Testing
+	jUnitVersion = '4.12'
+	androidxJunitVersion = '1.1.1'
+	androidxExpressoVersion = '3.2.0'
+
+	// External libraries
+	retrofitVersion = '2.6.0'
+
+
+	// ====== FLAVORS ======
+
+	serviceUrl = "serviceUrl"
+
+	// ====== MODULES ======
+
+	module_Base = ":base"
+	module_Login = ":login"
+	module_Statements = ":statements"
+
+
+	// ====== LIBRARY ======
+
+	library_CoreUi = ":core-ui"
+	library_WebService = ":webservice"
+	library_Widgets = ":widgets"
+	library_ReponseObjects = ":responseobjects"
+	library_Validator = ":validator"
+
+
+
+	// ====== PATHS ======
+
+	// Classpath
+	buildTools = "com.android.tools.build:gradle:$buildToolsVersion"
+	kotlinJetBrains = "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+
+	// DefaultConfig
+	AndroidJunitRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+	// Internal
+	googlePlayCore = "com.google.android.play:core:$googlePlayCoreVersion"
+	kotlinStdLib = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
+
+	// Widgets
+	androidxAppCompat = "androidx.appcompat:appcompat:$androidxAppCompatVersion"
+	amdroidxKtxCore = "androidx.core:core-ktx:$androidxKtxCoreVersion"
+	androidxConstraint = "androidx.constraintlayout:constraintlayout:$androidxConstraintVersion"
+	androidxMaterial = "com.google.android.material:material:$androidxMaterialVersion"
+
+	// Testing
+	jUnit = "junit:junit:$jUnitVersion"
+	androidxJunit = "androidx.test.ext:junit:$androidxJunitVersion"
+	androidxExpresso = "androidx.test.espresso:espresso-core:$androidxExpressoVersion"
+
+	// External libraries
+	retrofitGson = "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+	retrofit = "com.squareup.retrofit2:retrofit:$retrofitVersion"
+
+
+}

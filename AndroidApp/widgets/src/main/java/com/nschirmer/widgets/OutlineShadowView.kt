@@ -200,6 +200,7 @@ class OutlineShadowView @JvmOverloads constructor(context: Context, attrs: Attri
 
     // Draw the shadow when the child Views are created
     override fun dispatchDraw(canvasView: Canvas?) {
+        needToDrawShadow = true
         if(hasShadow){
             drawShadow(canvasView)
         }
