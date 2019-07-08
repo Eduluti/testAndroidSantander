@@ -46,6 +46,7 @@ ext {
 	// ====== LIBRARY ======
 
 	library_CoreUi = ":core-ui"
+	library_NetworkChecker = ":networkchecker"
 	library_WebService = ":webservice"
 	library_Widgets = ":widgets"
 	library_ReponseObjects = ":responseobjects"

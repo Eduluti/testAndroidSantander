@@ -1,3 +1,2 @@
-include ':base', ':widgets', ':login', ':statements', ':webservice', ':responseobjects', ':core-ui'
 rootProject.name='Stantander Test'
-include ':validator'
+include ':base', ':widgets', ':login', ':statements', ':webservice', ':responseobjects', ':core-ui', ':validator', ':networkchecker'

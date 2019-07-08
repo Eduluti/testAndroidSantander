@@ -1,4 +1,4 @@
-package com.nschirmer.webservice
+package com.nschirmer.networkchecker
 
 import org.junit.Test
 
