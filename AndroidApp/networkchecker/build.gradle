@@ -1,0 +1,20 @@
+apply from: '../build_commons_library.gradle'
+
+android {
+
+    defaultConfig {
+        versionCode 1
+        versionName "1.0"
+    }
+
+    // These flavors are in  serviceUrl dimension
+    productFlavors {
+        prod {
+            buildConfigField "String", "NETWORK_URL_TEST", "\"https://www.google.com/\""
+        }
+    }
+
+}
+
+dependencies {
+}

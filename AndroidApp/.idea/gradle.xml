@@ -11,6 +11,7 @@
             <option value="$PROJECT_DIR$/base" />
             <option value="$PROJECT_DIR$/core-ui" />
             <option value="$PROJECT_DIR$/login" />
+            <option value="$PROJECT_DIR$/networkchecker" />
             <option value="$PROJECT_DIR$/responseobjects" />
             <option value="$PROJECT_DIR$/statements" />
             <option value="$PROJECT_DIR$/validator" />
