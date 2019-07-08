@@ -2,7 +2,7 @@ ext {
 	// ====== VERSIONS ======
 
 	// Project variables version
-	kotlinVersion = '1.3.40'
+	kotlinVersion = '1.3.41'
 
 	// Default Config
 	projectSdkVersion = 29
