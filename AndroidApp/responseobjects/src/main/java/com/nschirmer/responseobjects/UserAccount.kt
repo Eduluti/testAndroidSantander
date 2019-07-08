@@ -1,3 +1,5 @@
 package com.nschirmer.responseobjects
 
-class UserAccount (userId: Long?, name: String?, bankAccount: String?, agency: String?, balance: Double?)
+import java.io.Serializable
+
+class UserAccount (val userId: Long?, val name: String?, val bankAccount: String?, val agency: String?, val balance: Double?): Serializable
