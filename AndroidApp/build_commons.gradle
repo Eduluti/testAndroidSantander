@@ -28,6 +28,7 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     testImplementation jUnit
+    testImplementation mockito
     androidTestImplementation androidxJunit
     androidTestImplementation androidxExpresso
 }
