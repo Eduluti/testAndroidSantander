@@ -3,4 +3,8 @@
     <string name="placeholder_button">Button</string>
     <string name="placeholder_inputtext_hint">Hint</string>
     <string name="placeholder_inputtext_error">Error</string>
+
+    <string name="placeholder_error_cpf">CPF is not valid</string>
+    <string name="placeholder_error_password">Password not meet requirements</string>
+    <string name="placeholder_error_email">Email is not valid</string>
 </resources>

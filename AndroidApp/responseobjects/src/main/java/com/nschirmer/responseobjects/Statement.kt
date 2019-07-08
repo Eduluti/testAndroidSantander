@@ -1,5 +1,6 @@
 package com.nschirmer.responseobjects
 
+import java.io.Serializable
 import java.sql.Date
 
-class Statement (title: String?, desc: String?, date: Date?, value: Double?)
+class Statement (val title: String?, val desc: String?, val date: Date?, val value: Double?): Serializable

@@ -6,6 +6,8 @@ import android.graphics.*
 import android.util.AttributeSet
 import android.view.View
 import android.widget.FrameLayout
+import kotlin.math.max
+import kotlin.math.min
 
 
 /**
@@ -86,7 +88,7 @@ class OutlineShadowView @JvmOverloads constructor(context: Context, attrs: Attri
     var angle = DEFAULT_ANGLE
         set(value) {
             if(value in MIN_ANGLE .. MAX_ANGLE){
-                field = Math.max(MIN_ANGLE, Math.min(value, MAX_ANGLE))
+                field = max(MIN_ANGLE, min(value, MAX_ANGLE))
                 resetShadow()
             }
         }
