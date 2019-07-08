@@ -22,6 +22,7 @@ import com.nschirmer.widgets.InputText.InputType.*
 import kotlinx.android.synthetic.main.input_text.view.*
 
 
+// TODO fix android studio preview of this view
 class InputText @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyle: Int = 0): FrameLayout(context, attrs, defStyle) {
 
     /** Set if the automatic error message will disappear if the user typed something when an error is appearing
