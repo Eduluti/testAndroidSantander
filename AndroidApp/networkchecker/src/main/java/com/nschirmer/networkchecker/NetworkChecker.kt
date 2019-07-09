@@ -1,51 +1,51 @@
 package com.nschirmer.networkchecker
 
 import android.content.Context
-import com.nschirmer.networkchecker.BuildConfig.NETWORK_URL_TEST
-import java.io.IOException
-import java.net.HttpURLConnection
-import java.net.URL
 import android.telephony.TelephonyManager
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
-import java.net.InetAddress
 
 
-/** TODO **/
-class NetworkChecker(private val context: Context) {
+/**
+ *  Listener to check when the internet test has finished @see [InternetChecker]
+ *
+ * @param canConnectToInternet return if there is internet connection
+ * @param networkType return the connection type through [NetworkType]
+ *  **/
+typealias NetworkCheckerListener = (canConnectToInternet: Boolean, networkType: NetworkType) -> Unit
 
 
-    fun hasInternetConnection(): Boolean {
-        return getNetworkType() != NetworkType.NOT_CONNECTED
+/**
+ * Check the network type and if really has internet connection @see [InternetChecker]
+ *
+ * @example
+
+    NetworkChecker(context){ canConnectToInternet, networkType ->
+            ... some code ....
+    }
+
+ * **/
+class NetworkChecker(private val context: Context, private val networkCheckerListener: NetworkCheckerListener) {
+
+    init {
+        getNetworkType()
     }
 
 
-    fun getNetworkType(): NetworkType {
-        getTelephonyManager().networkType.run {
-            return when {
-                ! canConnectToExternal() -> NetworkType.NOT_CONNECTED
-                isNetworkWifi() -> NetworkType.WIFI
-                isNetwork2G(this) -> NetworkType.MOBILE_2G
-                isNetwork3G(this)-> NetworkType.MOBILE_3G
+    /** Wait until the internet check test is done and check the connection type **/
+    private fun getNetworkType() {
+        InternetChecker { hasInternet ->
+            val networkType: NetworkType = getTelephonyManager().networkType.run {
+                when {
+                    ! hasInternet -> NetworkType.NOT_CONNECTED
+                    isNetworkWifi() -> NetworkType.WIFI
+                    isNetwork2G(this) -> NetworkType.MOBILE_2G
+                    isNetwork3G(this)-> NetworkType.MOBILE_3G
                 isNetwork4G(this) -> NetworkType.MOBILE_4G
                 else -> NetworkType.OTHER
             }
         }
-    }
-
-
-    fun canConnectToExternal(url: String = NETWORK_URL_TEST): Boolean {
-        try {
-            (URL(url).openConnection() as HttpURLConnection).run {
-                setRequestProperty("User-Agent", "Test")
-                setRequestProperty("Connection", "close")
-                connectTimeout = 1500
-                connect()
-                return responseCode == HttpURLConnection.HTTP_OK
-            }
-
-        } catch (e: IOException) {
-            return false
+            networkCheckerListener(hasInternet, networkType)
         }
     }
 
