@@ -1,55 +1,59 @@
 package com.nschirmer.networkchecker
 
 import android.content.Context
-import com.nschirmer.networkchecker.BuildConfig.NETWORK_URL_TEST
-import java.io.IOException
-import java.net.HttpURLConnection
-import java.net.URL
 import android.telephony.TelephonyManager
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
-import java.net.InetAddress
 
 
-/** TODO **/
-class NetworkChecker(private val context: Context) {
+/**
+ *  Listener to check when the internet test has finished @see [InternetChecker]
+ *
+ * @param canConnectToInternet return if there is internet connection
+ * @param networkType return the connection type through [NetworkType]
+ *  **/
+typealias NetworkCheckerListener = (canConnectToInternet: Boolean, networkType: NetworkType) -> Unit
 
 
-    fun hasInternetConnection(): Boolean {
-        return getNetworkType() != NetworkType.NOT_CONNECTED
+/**
+ * Check the network type and if really has internet connection @see [InternetChecker]
+ *
+ * @example
+
+    NetworkChecker(context){ canConnectToInternet, networkType ->
+            ... some code ....
+    }
+
+ * **/
+class NetworkChecker(private val context: Context, private val networkCheckerListener: NetworkCheckerListener) {
+
+    init {
+        getNetworkType()
     }
 
 
-    fun getNetworkType(): NetworkType {
-        getTelephonyManager().networkType.run {
-            return when {
-                ! canConnectToExternal() -> NetworkType.NOT_CONNECTED
-                isNetworkWifi() -> NetworkType.WIFI
-                isNetwork2G(this) -> NetworkType.MOBILE_2G
-                isNetwork3G(this)-> NetworkType.MOBILE_3G
-                isNetwork4G(this) -> NetworkType.MOBILE_4G
-                else -> NetworkType.OTHER
+    /** Wait until the internet check test is done and check the connection type **/
+    private fun getNetworkType() {
+        InternetChecker { hasInternet ->
+            val networkType: NetworkType = getTelephonyManager().networkType.run {
+                when {
+                    ! hasInternet -> NetworkType.NOT_CONNECTED
+                    isNetworkWifi() -> NetworkType.WIFI
+                    isNetwork2G(this) -> NetworkType.MOBILE_2G
+                    isNetwork3G(this)-> NetworkType.MOBILE_3G
+                    isNetwork4G(this) -> NetworkType.MOBILE_4G
+                    else -> NetworkType.OTHER
+                }
             }
+            networkCheckerListener(hasInternet, networkType)
         }
     }
 
 
-    fun canConnectToExternal(url: String = NETWORK_URL_TEST): Boolean {
-        try {
-            (URL(url).openConnection() as HttpURLConnection).run {
-                setRequestProperty("User-Agent", "Test")
-                setRequestProperty("Connection", "close")
-                connectTimeout = 1500
-                connect()
-                return responseCode == HttpURLConnection.HTTP_OK
-            }
-
-        } catch (e: IOException) {
-            return false
-        }
-    }
-
-
+    /**
+     *  @return If the connected network is 2G connection.
+     *  Speed: 14-100 kbps
+     *  **/
     private fun isNetwork2G(networkState: Int): Boolean{
         return when (networkState) {
             TelephonyManager.NETWORK_TYPE_GPRS, TelephonyManager.NETWORK_TYPE_EDGE,
@@ -60,6 +64,10 @@ class NetworkChecker(private val context: Context) {
     }
 
 
+    /**
+     *  @return If the connected network is 3G connection.
+     *  Speed: 400 kbps - 20 Mbps
+     *  **/
     private fun isNetwork3G(networkState: Int): Boolean{
         return when (networkState) {
             TelephonyManager.NETWORK_TYPE_UMTS, TelephonyManager.NETWORK_TYPE_EVDO_0,
@@ -72,6 +80,10 @@ class NetworkChecker(private val context: Context) {
     }
 
 
+    /**
+     *  @return If the connected network is 4G connection.
+     *  Speed: 10+ Mbps
+     *  **/
     private fun isNetwork4G(networkState: Int): Boolean{
         return when (networkState) {
             TelephonyManager.NETWORK_TYPE_LTE -> true
@@ -80,6 +92,11 @@ class NetworkChecker(private val context: Context) {
     }
 
 
+    /**
+     *  @return If the deivce is connected to a WiFi connection.
+     * This only test if the device is connected to an access point and does not check if there is
+     * a real internet connection.
+     * **/
     private fun isNetworkWifi(): Boolean {
         getConnectivityManager().run {
             if (this != null) {
@@ -103,10 +120,12 @@ class NetworkChecker(private val context: Context) {
     }
 
 
+    /** @return a fresh [ConnectivityManager] status **/
     private fun getConnectivityManager(): ConnectivityManager? =
         context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager?
 
 
+    /** @return a fresh [TelephonyManager] status **/
     private fun getTelephonyManager(): TelephonyManager =
         context.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
 
