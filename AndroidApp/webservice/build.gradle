@@ -7,9 +7,17 @@ android {
         versionName "1.0"
     }
 
+    // These flavors are in  serviceUrl dimension
+    productFlavors {
+        prod {
+            buildConfigField "String", "BASE_API_URL", "\"https://bank-app-test.herokuapp.com/api/\""
+        }
+    }
+
 }
 
 dependencies {
     api project(library_ReponseObjects)
+    implementation project(library_NetworkChecker)
     implementation retrofit
 }
